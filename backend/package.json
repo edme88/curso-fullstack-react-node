@@ -1,0 +1,15 @@
+{
+  "name": "backend",
+  "version": "1.0.0",
+  "description": "Backend de las tareas",
+  "main": "index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "keywords": [
+    "tareas",
+    "listas"
+  ],
+  "author": "agus",
+  "license": "ISC"
+}
