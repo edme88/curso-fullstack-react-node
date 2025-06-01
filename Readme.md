@@ -74,7 +74,7 @@ Backend: 4000
 MongoDB: 27017
 
 Video3: https://drive.google.com/file/d/1O2O1Ilf8dx91oRXw_1EmkoPDYEMTh3Md/view
-Min: 
+Min: 1hs 05min
 
 Todas las pruebas las hiciste con una API real pre-diseñada. ¿Convendría mockear data?
 Que diferencia hay entre un "export default home"; por ejeplo y un "export { Home };"

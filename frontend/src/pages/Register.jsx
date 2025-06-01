@@ -1,6 +1,10 @@
+import { Layout } from "../components/Layout";
+
 const Register = () => {
     return (
-        <h2>Registro de Usuarios</h2>
+        <Layout>
+            <h2>Registro de Usuarios</h2>
+        </Layout>
     )
 }
 

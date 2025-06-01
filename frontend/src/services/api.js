@@ -7,30 +7,29 @@ const getTasks = async (userId) => {
 };
 
 const createTasks = async (text, userId) => {
-  const res = await fetch(`${API_URL}?userId=${userId}`, {
+  const res = await fetch(API_URL, {
     method: "POST",
-    headers: { "Content-type": "application/json" },
-    body: JSON.stringify({ text, userId }),
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ text, userId: userId }),
   });
-  return res;
+  const data = await res.json();
+  return data.data;
 };
 
-const deleteTasks = async (userId) => {
-  const res = await fetch(`${API_URL}?userId=${userId}`, {
+const deleteTasks = async (id, userId) => {
+  await fetch(`${API_URL}/${id}?userId=${userId}`, {
     method: "DELETE",
-    headers: { "Content-type": "application/json" },
-    body: JSON.stringify({ userId }),
   });
-  return res;
 };
 
 const updateTasks = async (id, completed, userId) => {
   const res = await fetch(`${API_URL}/${id}`, {
     method: "PATCH",
-    headers: { "Content-type": "application/json" },
-    body: JSON.stringify({ userId, completed: !completed }),
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ completed: !completed, userId }),
   });
-  return res;
+  const data = res.json();
+  return data.data;
 };
 
 export { getTasks, createTasks, deleteTasks, updateTasks };
