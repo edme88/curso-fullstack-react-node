@@ -1,7 +1,17 @@
-const API_URL = import.meta.env.VITE_API_URL;
+//const API_URL = import.meta.env.VITE_API_URL;
+const NODE_DEV = import.meta.env.VITE_NODE_DEV ?? "development";
 
-const getTasks = async (userId) => {
-  const response = await fetch(`${API_URL}?userId=${userId}`);
+const API_URL =
+  NODE_DEV === "production"
+    ? import.meta.env.VITE_API_URL
+    : "http://localhost:2222/api/";
+
+const getTasks = async (token) => {
+  const response = await fetch(`${API_URL}/tasks`, {
+    headers: {
+      Authorization: `Bearer ${token}`, //autenticacion JWT - token "al portador"
+    },
+  });
   const data = await response.json();
   return data.data;
 };

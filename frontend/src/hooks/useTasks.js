@@ -5,6 +5,7 @@ import {
   deleteTasks,
   updateTasks,
 } from "../services/api";
+import { useAuth } from "../context/authContext";
 
 const useTasks = () => {
   const [tasks, setTasks] = useState([
@@ -16,11 +17,13 @@ const useTasks = () => {
   const recognitionRef = useRef(null);
   const USER_ID = 123;
 
+  const { token } = useAuth();
+
   useEffect(() => {
     const fetchingTasks = async () => {
       setLoader(true);
       try {
-        const tasks = await getTasks(USER_ID);
+        const tasks = await getTasks(token);
         setTasks(tasks);
       } catch (error) {
         console.log(`Error al recuperar las tareas: ${error}`);

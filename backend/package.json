@@ -4,12 +4,25 @@
   "description": "Backend de las tareas",
   "main": "index.js",
   "scripts": {
-    "test": "test"
+    "dev": "ts-node-dev --respawn ./src/index.ts",
+    "build": "tsc",
+    "start": "node ./dist/index.js",
+    "start-local": "tsc && node ./dist/index.js"
   },
   "keywords": [
     "tareas",
     "listas"
   ],
   "author": "agus",
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {
+    "@types/express": "^5.0.3",
+    "typescript": "^5.8.3"
+  },
+  "dependencies": {
+    "express": "^5.1.0",
+    "http-status-codes": "^2.3.0",
+    "mongoose": "^8.16.0",
+    "zod": "^3.25.67"
+  }
 }
