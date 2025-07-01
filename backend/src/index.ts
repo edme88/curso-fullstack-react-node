@@ -1,23 +1,28 @@
 //punto de entrada al sistema
 //levantar base de datos
 //levantar servidor
-import express from "express"
+import express, { NextFunction, Request, Response } from "express"
 process.loadEnvFile();
 import connect from "../src/config/mongoConnect";
+import {taskRouter} from "./routes/routerTask.js",
+import {authRouter} from "./routes/authRouter.js"
+import { authMiddleware } from "./middleware/auth";
 
 const PORT = process.env.PORT ?? 1234
 
 
 const app = express();
-app.use//NO recuerdo como sigue
+app.use(express.json())
 
-app.use("/api/task", taskRouter)
+app.use("api/auth", authRouter)
+
+app.use("/api/task", authMiddleware, taskRouter)
 
 app.get("/api/tasks", (request, response) => {
     response.json({data: tasks});
 })
 
-app.post("/api/tasks", (request, response) => {
+app.post("/api/tasks",authMiddleware, (request, response) => {
     //ver si me mandaron la data
 })
 
@@ -37,7 +42,7 @@ app.get("/api/tasks/:id", (request, response) => {
     // console.log(`${id} - id por url`)
 })
 
-app.delete("/api/tasks/:id", (request, response) => {
+app.delete("/api/tasks/:id",authMiddleware, (request, response) => {
     //falta
 })
 

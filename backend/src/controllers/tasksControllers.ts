@@ -11,7 +11,7 @@ import { taskSchema } from "../validators/TaskSchemaValidatos";
 
 const getAllTasks = async (request: Request, response: Response) => {
     try {
-        const tasks = await Task.find();
+        const tasks = await Task.find({ userId });
         response.json({success: true, message: "Éxito al obtener lista de tareas", data: tasks});
     } catch (error: any) {
         response.status(500).json({success: false, message: "Error al obtener las tareas", data: error.message})
@@ -20,9 +20,10 @@ const getAllTasks = async (request: Request, response: Response) => {
 
 const createTask = async (request: Request, response: Response, next: NextFunction): Promise<any> => {
     const body = request.body;
+    const userId = request.userId
     console.log(body);
     //aplicar alguna librería para sanitizar la data de entrada
-    const validator = taskSchema.safeParse({ text })
+    const validator = taskSchema.safeParse({ text, userId })
     console.log(validator)
 
     if(!validator.success){

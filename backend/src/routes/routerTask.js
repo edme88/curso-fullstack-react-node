@@ -22,8 +22,8 @@ taskRouter.delete("/:id", deleteTask);
 
 // taskRouter.post("/api/auth/register", () => {});
 
-taskRouter.listen(PORT, () => {
-  console.log(`Servidor en escucha por el puerto ${PORT}`);
-});
+// taskRouter.listen(PORT, () => {
+//   console.log(`Servidor en escucha por el puerto ${PORT}`);
+// });
 
 export { taskRouter };
